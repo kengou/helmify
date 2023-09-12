@@ -171,6 +171,9 @@ func processPodContainer(name string, appMeta helmify.AppMetadata, c corev1.Cont
 		return c, fmt.Errorf("wrong image format: %q", c.Image)
 	}
 	repo, tag := c.Image[:index], c.Image[index+1:]
+	if appMeta.Config().NoImageTag {
+		tag = ""
+	}
 	containerName := strcase.ToLowerCamel(c.Name)
 	c.Image = fmt.Sprintf("{{ .Values.%[1]s.%[2]s.image.repository }}:{{ .Values.%[1]s.%[2]s.image.tag | default .Chart.AppVersion }}", name, containerName)
 

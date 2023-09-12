@@ -23,6 +23,8 @@ type Config struct {
 	Crd bool
 	// ImagePullSecrets flag
 	ImagePullSecrets bool
+	// NoImageTag flag
+	NoImageTag bool
 	// GenerateDefaults enables the generation of empty values placeholders for common customization options of helm chart
 	// current generated values: tolerances, node selectors, topology constraints
 	GenerateDefaults bool
